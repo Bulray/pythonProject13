@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template, debughelpers
 from my_code import get_settings
-
+from my_code import get_candidates_by_id
+from my_code import search_name
+from my_code import get_skills
+from my_code import get_candidates
 
 app = Flask(__name__)
 
