@@ -18,27 +18,22 @@ def page_index():
 
 
 @app.route("/candidate/<int:id>")
-def page_candidate(id):
+def page_candidates(id):
     candidate = get_candidates_by_id(id)
-    page_content = f"""
-    <h1>{candidate["name"]}</h1>
-    <p>{candidate["position"]}</p>
-    <img src = "{candidate["picture"]} width = 200/>
-    <p>{candidate["skills"]}</p>
-    """
-    return page_content
+    #page_content = f"""
+    #<h1>{candidate["name"]}</h1>
+    #<p>{candidate["position"]}</p>
+    #<img src = "{candidate["picture"]} width = 200/>
+    #<p>{candidate["skills"]}</p>
+  #  """
+    return render_template('page_candidates.html', name = candidate["name"], position = candidate["position"], photo = candidate["picture"], skills = candidate["skills"])
 
 
 @app.route("/list")
-def page_list_of_candidates():
+def list():
     candidates = get_candidates()
-    page_content = "<h1>Все кандидаты</h1>"
-
     for candidate in candidates:
-        page_content += f"""
-            <p><a href = "/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
-        """
-        return page_content
+      return render_template('list.html', eho = "Все кандидаты", cid = candidate["id"], ut = candidate["name"])
 
 
 @app.route("/search")
@@ -46,14 +41,15 @@ def page_search():
     name = request.args.get("name", "")
     candidates = search_name(name)
 
-    candidates_count = len(candidates)
-    page_content = f"<h2>Найдено кандидатов {candidates_count}</h2>"
+    #candidates_count = len(candidates)
+  #  page_content = f"<h2>Найдено кандидатов {candidates_count}</h2>"
 
     for candidate in candidates:
-        page_content += f"""
-               <p><a href = "/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
-           """
-        return page_content
+        return render_template('page_search.html', count = len(candidates), cid = candidate["id"], name = candidate["name"])
+        #page_content += f"""
+         #      <p><a href = "/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
+          # """
+
 
 
 @app.route("/skill/<skill_name>")

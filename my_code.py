@@ -13,6 +13,7 @@ def get_candidates():
         data_json = json.load(f)
     return data_json
 
+
 def get_candidates_by_id(id):
     candidates = get_candidates()
     for candidate in candidates:
