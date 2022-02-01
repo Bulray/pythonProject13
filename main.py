@@ -16,7 +16,7 @@ def page_index():
 
 @app.route("/candidate/<int:id>")
 def page_candidate(id):
-    candidate = get_candidates_by_cid(id)
+    candidate = get_candidates_by_id(id)
     page_content = f"""
     <h1>{candidate["name"]}</h1>
     <p>{candidate["position"]}</p>
@@ -67,4 +67,4 @@ def get_skills(skill_name):
         return page_content
 
 
-app.run()
+app.run(debug=True)

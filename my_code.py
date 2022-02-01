@@ -14,7 +14,7 @@ def get_candidates():
     return data_json
 
 
-def get_candidates_by_cid(id):
+def get_candidates_by_id(id):
     candidates = get_candidates()
     for candidate in candidates:
         if candidate.get("id") == id_candidate:
